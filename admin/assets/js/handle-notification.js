@@ -1,5 +1,5 @@
 jQuery(document).ready(function( $ ) {
-
+    
     if (typeof Notification !== "undefined" ) {
       Notification.requestPermission().then(function (result) {
         if (result === 'denied') {
@@ -10,7 +10,6 @@ jQuery(document).ready(function( $ ) {
           console.log('The permission request was dismissed.');
           return;
         }
-
         cronVerifyNotification();
       });
     }

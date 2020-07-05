@@ -131,10 +131,15 @@ class Settings_Admin_Notifications_Orders_Admin {
         );
     }
 
+
+    /** 
+     * Importing notification script
+     * 
+    */
     public function import_scripts() {
         $this->options = get_option( 'admin_notifications_orders_option_name' );
         echo "<script>
-        var url_sound_notification = '" . plugin_dir_url( __FILE__ ) . 'assets/audio/notification_sound.mp3'."';
+        var url_sound_notification = '" . plugin_dir_url( __FILE__ ) . 'assets/audio/sound_notification.mp3'."';
         var url_ajax = '" .admin_url( 'admin-ajax.php', 'relative' )."';
         var titulo = '".$this->options['titulo']."';
         var descricao = '".$this->options['descricao']."';
