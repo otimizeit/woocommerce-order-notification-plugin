@@ -24,6 +24,7 @@ class Settings_Admin_Notifications_Orders_Admin {
     public function __construct() {
         add_action( 'admin_menu', array($this, 'menu_options_page') );    
         add_action( 'admin_init', array( $this, 'page_init' ) );   
+        add_action( 'admin_enqueue_scripts', array( $this, 'import_scripts' )); 
     }
     
     public function menu_options_page() {
@@ -97,8 +98,6 @@ class Settings_Admin_Notifications_Orders_Admin {
             'admin_notifications_orders_section_id',
             $args
         );   
-        
-        add_action( 'admin_enqueue_scripts', array( $this, 'import_scripts' )); 
     }
 
     /**
