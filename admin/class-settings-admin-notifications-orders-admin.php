@@ -23,7 +23,8 @@ class Settings_Admin_Notifications_Orders_Admin {
 
     public function __construct() {
         add_action( 'admin_menu', array($this, 'menu_options_page') );    
-        add_action( 'admin_init', array( $this, 'page_init' ) );
+        add_action( 'admin_init', array( $this, 'page_init' ) );   
+        add_action( 'admin_enqueue_scripts', array( $this, 'import_scripts' )); 
     }
     
     public function menu_options_page() {
@@ -96,7 +97,7 @@ class Settings_Admin_Notifications_Orders_Admin {
             'admin-notifications-orders-setting-admin', 
             'admin_notifications_orders_section_id',
             $args
-        );      
+        );   
     }
 
     /**
@@ -130,6 +131,23 @@ class Settings_Admin_Notifications_Orders_Admin {
         );
     }
 
+
+    /** 
+     * Importing notification script
+     * 
+    */
+    public function import_scripts() {
+        $this->options = get_option( 'admin_notifications_orders_option_name' );
+        echo "<script>
+        var url_sound_notification = '" . plugin_dir_url( __FILE__ ) . 'assets/audio/sound_notification.mp3'."';
+        var url_ajax = '" .admin_url( 'admin-ajax.php', 'relative' )."';
+        var titulo = '".$this->options['titulo']."';
+        var descricao = '".$this->options['descricao']."';
+        </script>";
+
+        wp_enqueue_script( 'my_custom_script', plugin_dir_url( __FILE__ ) . 'assets/js/handle-notification.js', array('jquery'), '1.0' );
+    }
+    
 }
 
 
